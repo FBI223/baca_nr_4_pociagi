@@ -9,10 +9,12 @@ public class Source {
     public static class Pociag
     {
 
+
     }
 
     public static class Wagon
     {
+
 
     }
 
@@ -26,7 +28,7 @@ public class Source {
 
     }
 
-    public static class Dworzec
+    public static class Dworzec_Krakow
     {
 
     }
