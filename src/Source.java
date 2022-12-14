@@ -11,17 +11,6 @@ public class Source {
 
 
 
-    public static class Dworzec_Krakow
-    {
-
-
-
-
-    }
-
-
-
-
     public static void main(String[] args)
     {
 
@@ -118,7 +107,7 @@ public class Source {
 
 
 
-                // dworzec_ruczaj.nowy_pociag_wstaw(temp_string_pociag,temp_string_wagon);
+                dworzec_ruczaj.nowy_pociag_wstaw(temp_string_pociag,temp_string_wagon);
                 System.out.println("--------");
 
 
