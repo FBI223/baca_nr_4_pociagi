@@ -166,7 +166,7 @@ public class Source {
                 temp_ostatni_wagon = temp_pociag.first.prev ;
 
                 temp_pociag.first.prev = new Wagon();
-                temp_pociag.first.name_wagon = w1;
+                temp_pociag.first.prev.name_wagon = w1;
                 temp_pociag.first.prev.prev = temp_ostatni_wagon ;
                 temp_ostatni_wagon.next = temp_pociag.first.prev ;
                 temp_pociag.first.prev.next = temp_pociag.first ;
@@ -175,6 +175,170 @@ public class Source {
 
 
         }
+
+
+
+        public void insert_last(String t1 , String w1)
+        {
+
+            Wagon temp_ostatni_wagon ;
+
+            Pociag temp_pociag = first_pociag_dworzec ;
+            while ( t1 != temp_pociag.name_pociag )
+            {
+                temp_pociag = temp_pociag.next;
+            }
+
+            if (temp_pociag.first.next == null)
+            {
+                temp_pociag.first.next = new Wagon();
+                temp_pociag.first.next.prev = temp_pociag.first ;
+                temp_pociag.first.next.name_wagon = w1 ;
+                temp_pociag.first.next.next = temp_pociag.first ;
+                temp_pociag.first.prev = temp_pociag.first.next ;
+
+            } else
+            {
+
+                temp_ostatni_wagon = temp_pociag.first.prev ;
+
+                temp_pociag.first.prev = new Wagon();
+                temp_pociag.first.prev.name_wagon = w1;
+                temp_pociag.first.prev.next = temp_pociag.first ;
+
+                temp_pociag.first.prev.prev = temp_ostatni_wagon;
+                temp_ostatni_wagon.next = temp_pociag.first.prev ;
+
+            }
+
+
+        }
+
+        public void display(String t1)
+        {
+            Wagon temp_wagon ;
+            Pociag temp_pociag = first_pociag_dworzec ;
+            String wyjscie = t1 + ": " ;
+
+            if ( temp_pociag == null )
+            {
+                System.out.println("Train " + t1 + " does not exist") ;
+            } else
+            {
+                while ( ((t1 != temp_pociag.name_pociag) && ( temp_pociag.next != null ) ) )
+                {
+                    temp_pociag = temp_pociag.next;
+                }
+
+                if ( t1 == temp_pociag.name_pociag )
+                {
+
+                    temp_wagon = temp_pociag.first;
+
+
+                    while ( temp_wagon.next != null )
+                    {
+                        wyjscie += temp_wagon ;
+                        wyjscie += " " ;
+                        temp_wagon = temp_wagon.next ;
+                    }
+
+                    wyjscie += temp_wagon ;
+
+
+                } else
+                {
+                    System.out.println("Train " + t1 + " does not exist") ;
+                }
+
+
+            }
+
+
+        }
+
+
+
+
+
+        public void display_trains()
+        {
+
+            String wyjscie = "Trains: ";
+            Pociag temp_pociag = first_pociag_dworzec ;
+
+            if ( temp_pociag != null )
+            {
+                wyjscie += temp_pociag.name_pociag ;
+                while ( temp_pociag.next != null )
+                {
+                    temp_pociag = temp_pociag.next ;
+                    wyjscie += " ";
+                    wyjscie += temp_pociag.name_pociag;
+
+                }
+
+
+            }
+
+
+
+            System.out.println(wyjscie);
+
+
+        }
+
+        public void reverse( String t1 )
+        {
+            Pociag temp_pociag = first_pociag_dworzec;
+            Wagon temp_wagon;
+            boolean czy_istnieje = false;
+
+            if ( temp_pociag == null )
+            {
+                System.out.println("Train " + t1 + " does not exist") ;
+            } else
+            {
+                while ( ((t1 != temp_pociag.name_pociag) && ( temp_pociag.next != null ) ) )
+                {
+                    temp_pociag = temp_pociag.next;
+                }
+
+
+
+                if ( t1 == temp_pociag.name_pociag )
+                {
+
+                    if ( (temp_pociag.first.next != null ) && ( temp_pociag.first.next.next == null ) )
+                    {
+                        temp_pociag.first = temp_pociag.first.next ;
+
+                    }else if ( (temp_pociag.first.next != null ) && ( temp_pociag.first.next.next != null ) )
+                    {
+
+                        temp_wagon = temp_pociag.first.prev;
+
+
+
+
+                    }
+
+
+                } else
+                {
+                    System.out.println("Train " + t1 + " does not exist") ;
+                }
+
+            }
+
+
+
+
+
+
+        }
+
+
 
 
 
