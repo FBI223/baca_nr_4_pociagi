@@ -490,8 +490,7 @@ public class Source {
             Pociag temp_pociag = first_pociag_dworzec ;
             Pociag temp_pociag_przed = first_pociag_dworzec  ;
             Wagon temp_wagon ;
-            String temp_wagon_name ;
-            String temp_pociag_name;
+
 
             if ( temp_pociag == null )
             {
@@ -523,7 +522,7 @@ public class Source {
                     {
                         if ( first_pociag_dworzec.name_pociag.equals(t1) == true  )
                         {
-                            temp_wagon_name = first_pociag_dworzec.first.name_wagon ;
+
 
                             if ( first_pociag_dworzec.first.next == null )
                             {
@@ -531,14 +530,14 @@ public class Source {
                                 first_pociag_dworzec = new Pociag() ;
                                 first_pociag_dworzec.name_pociag = t2;
                                 first_pociag_dworzec.first = new Wagon() ;
-                                first_pociag_dworzec.first.name_wagon = temp_wagon_name ;
+                                first_pociag_dworzec.first.name_wagon = temp_pociag.first.name_wagon ;
                             } else
                             {
                                 first_pociag_dworzec.next = new Pociag() ;
                                 first_pociag_dworzec.next.name_pociag = t2;
                                 // temp_wagon_name = first_pociag_dworzec.first.name_wagon ;
                                 first_pociag_dworzec.next.first = new Wagon() ;
-                                first_pociag_dworzec.next.first.name_wagon = temp_wagon_name;
+                                first_pociag_dworzec.next.first.name_wagon = temp_pociag.first.name_wagon ;
 
                                 first_pociag_dworzec.first = temp_pociag.first.next ;
 
@@ -552,8 +551,6 @@ public class Source {
                         }
                     } else
                     {
-                        temp_wagon_name = temp_pociag.first.name_wagon ;
-                        temp_pociag_name = temp_pociag.name_pociag ;
 
                         if ( temp_pociag.first.next == null  )
                         {
@@ -562,7 +559,7 @@ public class Source {
                             if ( temp_pociag.next == null )
                             {
                                 temp_pociag_przed.next = new Pociag();
-                                temp_pociag_przed.next.name_pociag = temp_pociag.name_pociag;
+                                temp_pociag_przed.next.name_pociag = t2 ;
                                 temp_pociag_przed.next.first = new Wagon();
                                 temp_pociag_przed.next.first.name_wagon = temp_pociag.first.name_wagon ;
 
@@ -580,7 +577,7 @@ public class Source {
                                 }
 
                                 temp_pociag.next = new Pociag() ;
-                                temp_pociag.next.name_pociag = temp_pociag_przed.name_pociag ;
+                                temp_pociag.next.name_pociag = t2 ;
                                 temp_pociag.next.first = new Wagon();
                                 temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon ;
 
@@ -600,7 +597,7 @@ public class Source {
                                 }
 
                                 temp_pociag.next = new Pociag();
-                                temp_pociag.next.name_pociag = temp_pociag_przed.name_pociag;
+                                temp_pociag.next.name_pociag = t2 ;
                                 temp_pociag.next.first = new Wagon();
                                 temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon;
 
@@ -611,55 +608,210 @@ public class Source {
                         {
 
 
+                            temp_pociag_przed = temp_pociag;
+                            while ( temp_pociag.next != null )
+                            {
+                                temp_pociag = temp_pociag.next ;
+
+                            }
+
+                            temp_pociag.next = new Pociag() ;
+                            temp_pociag.next.name_pociag = t2;
+                            temp_pociag.next.first = new Wagon();
+                            temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon ;
+
+
+                            if ( temp_pociag_przed.first.prev.prev == temp_pociag_przed.first )
+                            {
+                                temp_pociag_przed.first.prev = null;
+                                temp_pociag_przed.first.next = null ;
+                            } else
+                            {
+                                temp_pociag_przed.first.prev.next = temp_pociag_przed.first.next ;
+                                temp_pociag_przed.first.next.prev = temp_pociag_przed.first.prev ;
+
+                            }
+
+
 
                         }
 
-
-
-
-
-
-
                     }
-
-
-//
-//                    if ( temp_pociag.first.next == null )
-//                    {
-//                        temp_wagon_name = temp_pociag.first.name_wagon ;
-//
-//
-//
-//
-//                        if ( temp_pociag == first_pociag_dworzec )
-//                        {
-//                            first_pociag_dworzec = first_pociag_dworzec.next ;
-//                        } else if ( temp_pociag.next == null )
-//                        {
-//
-//                            temp_pociag_przed.next = null;
-//
-//                        } else
-//                        {
-//                            temp_pociag_przed.next  = temp_pociag_przed.next ;
-//                            temp_pociag_przed.next = null;
-//                        }
-//
-//                    }
-
-
-
-
 
                 }
 
+            }
 
+        }
+
+
+
+
+
+
+
+        public void del_last(String t1 , String t2)
+        {
+            Pociag temp_pociag = first_pociag_dworzec ;
+            Pociag temp_pociag_przed = first_pociag_dworzec  ;
+            Wagon temp_wagon ;
+
+
+            if ( temp_pociag == null )
+            {
+                System.out.println( "Train " + t1 + " does not exist" );
+            } else
+            {
+                while ( (temp_pociag.name_pociag.equals(t1) == false ) &&  ( temp_pociag != null ) )
+                {
+
+                    if ( temp_pociag.next != null )
+                    {
+                        if ( temp_pociag.next.name_pociag.equals(t1) == true  )
+                        {
+                            temp_pociag_przed = temp_pociag ;
+                        }
+                    }
+
+                    temp_pociag = temp_pociag.next ;
+
+                }
+
+                if ( first_pociag_dworzec == null )
+                {
+                    System.out.println( "Train " + t1 + " does not exist" );
+                } else
+                {
+
+                    if ( first_pociag_dworzec.next == null )
+                    {
+                        if ( first_pociag_dworzec.name_pociag.equals(t1) == true  )
+                        {
+
+                            if ( first_pociag_dworzec.first.next == null )
+                            {
+
+                                first_pociag_dworzec = new Pociag() ;
+                                first_pociag_dworzec.name_pociag = t2;
+                                first_pociag_dworzec.first = new Wagon() ;
+                                first_pociag_dworzec.first.name_wagon = temp_pociag.first.name_wagon  ;
+                            } else
+                            {
+                                first_pociag_dworzec.next = new Pociag() ;
+                                first_pociag_dworzec.next.name_pociag = t2;
+                                first_pociag_dworzec.next.first = new Wagon() ;
+                                first_pociag_dworzec.next.first.name_wagon = temp_pociag.first.name_wagon ;
+
+                                first_pociag_dworzec.first = temp_pociag.first.next ;
+
+                            }
+
+
+
+                        } else
+                        {
+                            System.out.println( "Train " + t1 + " does not exist" );
+                        }
+                    } else
+                    {
+
+                        if ( temp_pociag.first.next == null  )
+                        {
+
+
+                            if ( temp_pociag.next == null  )
+                            {
+                                temp_pociag_przed.next = new Pociag();
+                                temp_pociag_przed.next.name_pociag = t2 ;
+                                temp_pociag_przed.next.first = new Wagon();
+                                temp_pociag_przed.next.first.name_wagon = temp_pociag.first.name_wagon ;
+
+
+
+                            } else if ( temp_pociag == first_pociag_dworzec )
+                            {
+
+                                temp_pociag_przed = temp_pociag ;
+                                first_pociag_dworzec = first_pociag_dworzec.next ;
+
+                                while ( temp_pociag.next != null )
+                                {
+                                    temp_pociag = temp_pociag.next ;
+                                }
+
+                                temp_pociag.next = new Pociag() ;
+                                temp_pociag.next.name_pociag = t2 ;
+                                temp_pociag.next.first = new Wagon();
+                                temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon ;
+
+
+
+                            } else
+                            {
+
+                                temp_pociag_przed = temp_pociag;
+                                temp_pociag_przed.next = temp_pociag.next;
+
+
+                                while ( temp_pociag.next != null )
+                                {
+                                    temp_pociag = temp_pociag.next ;
+
+                                }
+
+                                temp_pociag.next = new Pociag();
+                                temp_pociag.next.name_pociag = t2 ;
+                                temp_pociag.next.first = new Wagon();
+                                temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon;
+
+                            }
+
+
+                        } else
+                        {
+
+
+                            temp_pociag_przed = temp_pociag;
+                            while ( temp_pociag.next != null )
+                            {
+                                temp_pociag = temp_pociag.next ;
+
+                            }
+
+                            temp_pociag.next = new Pociag() ;
+                            temp_pociag.next.name_pociag = t2;
+                            temp_pociag.next.first = new Wagon();
+                            temp_pociag.next.first.name_wagon = temp_pociag_przed.first.prev.name_wagon ;
+
+
+                            temp_pociag.next.first.name_wagon = temp_pociag_przed.first.prev.name_wagon ;
+
+                            if ( temp_pociag_przed.first.prev.prev == temp_pociag_przed.first )
+                            {
+                                temp_pociag_przed.first.next = null ;
+                                temp_pociag_przed.first.prev = null ;
+                            } else
+                            {
+                                temp_pociag_przed.first.prev.prev.next = temp_pociag_przed.first ;
+                                temp_pociag_przed.first.prev = temp_pociag_przed.first.prev.prev ;
+                            }
+
+
+
+
+
+                        }
+
+                    }
+
+                }
 
             }
 
-
-
         }
+
+
+
 
 
 
@@ -773,13 +925,13 @@ public class Source {
                 temp_string = skaner.nextLine();
 
 
-                if ( ( temp_string.charAt(0) == 'N' ) && ( temp_string.charAt(1) == 'e' ) && ( temp_string.charAt(2) == 'w' ) )
+                if (  temp_string.charAt(0) == 'N' )
                 {
                     k = 4 ;
                     temp_string_pociag = "";
                     temp_string_wagon = "" ;
 
-                    while ( temp_string.charAt(k) != '_' )
+                    while ( temp_string.charAt(k) != ' ' )
                     {
                         temp_string_pociag += temp_string.charAt(k);
                         k++;
@@ -795,6 +947,51 @@ public class Source {
 
                     dworzec_ruczaj.nowy_pociag_wstaw(temp_string_pociag,temp_string_wagon);
                     System.out.println("--------");
+
+
+                } else if ( temp_string.charAt(0) == 'I' )
+                {
+
+                    if ( temp_string.charAt(6) == 'F'  )
+                    {
+
+
+                    } else if ( temp_string.charAt(6) == 'L'  )
+                    {
+
+
+                    }
+
+
+
+                } else if ( temp_string.charAt(0) == 'D' )
+                {
+
+                    if ( temp_string.charAt(1) == 'i' )
+                    {
+
+
+                    } else if ( temp_string.charAt(3) == 'F' )
+                    {
+
+
+                    } else if ( temp_string.charAt(3) == 'L'  )
+                    {
+
+                    }
+
+
+
+                } else if ( temp_string.charAt(0) == 'T' )
+                {
+
+
+                } else if ( temp_string.charAt(0) == 'R' )
+                {
+
+
+                } else if ( temp_string.charAt(0) == 'U' )
+                {
 
 
                 }
