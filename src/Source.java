@@ -33,8 +33,8 @@ public class Source {
             boolean czy_takie_same = true ;
             int i = 0 ;
 
-            System.out.println(s1.length());
-            System.out.println(s2.length());
+//            System.out.println(s1.length());
+//            System.out.println(s2.length());
 
             if ( s1.length() != s2.length() )
             {
@@ -46,8 +46,7 @@ public class Source {
                     if ( s1.charAt(i) != s2.charAt(i)  )
                     {
 
-                        System.out.println("s1 " + s1.charAt(i) + "     s2 " + s2.charAt(i) + "    " + ( s1.charAt(i) != s2.charAt(i)  ) );
-
+                        //System.out.println("s1 " + s1.charAt(i) + "     s2 " + s2.charAt(i) + "    " + ( s1.charAt(i) != s2.charAt(i)  ) );
                         czy_takie_same = false ;
                     }
                     i++ ;
@@ -72,22 +71,22 @@ public class Source {
                 first_pociag_dworzec.first = new Wagon() ;
                 first_pociag_dworzec.next = null;
                 first_pociag_dworzec.first.name_wagon = w1;
-                System.out.println("flaga 1 ");
-                System.out.println(first_pociag_dworzec);
+//                System.out.println("flaga 1 ");
+//                System.out.println(first_pociag_dworzec);
             } else
             {
 
 
                 temp_pociagg = first_pociag_dworzec;
-                System.out.println( temp_pociagg.name_pociag ) ;
+                //System.out.println( temp_pociagg.name_pociag ) ;
 
 
 
 
                 while ( (temp_pociagg.next != null )  && ( czy_istnieje_juz_taki_pociag == false ) )
                 {
-                    System.out.println("flaga 2 ");
-                    System.out.println( temp_pociagg.name_pociag ) ;
+//                    System.out.println("flaga 2 ");
+//                    System.out.println( temp_pociagg.name_pociag ) ;
                     czy_istnieje_juz_taki_pociag = czy_takie_same_stringi(temp_pociagg.name_pociag, t1)  ;
 
                     if ( czy_istnieje_juz_taki_pociag == false )
@@ -100,31 +99,31 @@ public class Source {
                 if ( temp_pociagg.next == null )
                 {
                     czy_istnieje_juz_taki_pociag = czy_takie_same_stringi(temp_pociagg.name_pociag, t1)  ;
-                    System.out.println( "czy istnieje " + czy_istnieje_juz_taki_pociag );
-
-                    System.out.println("flaga 2.4 ");
-                    System.out.println( "temp_pociag "+ temp_pociagg.name_pociag ) ;
-                    System.out.println( "t1 " + t1 ) ;
+//                    System.out.println( "czy istnieje " + czy_istnieje_juz_taki_pociag );
+//
+//                    System.out.println("flaga 2.4 ");
+//                    System.out.println( "temp_pociag "+ temp_pociagg.name_pociag ) ;
+//                    System.out.println( "t1 " + t1 ) ;
                     if ( temp_pociagg.name_pociag.equals(t1) == true )
                     {
                         czy_istnieje_juz_taki_pociag = true ;
-                        System.out.println("flaga 2.5 ");
+                        //System.out.println("flaga 2.5 ");
                     }
                 }
 
                 if ( czy_istnieje_juz_taki_pociag == false )
                 {
                     System.out.println( temp_pociagg.name_pociag ) ;
-                    System.out.println("flaga 3 ");
+                    //System.out.println("flaga 3 ");
                     temp_pociagg.next = new Pociag();
-                    System.out.println( temp_pociagg.name_pociag ) ;
+                    //System.out.println( temp_pociagg.name_pociag ) ;
                     temp_pociagg = temp_pociagg.next;
-                    System.out.println( temp_pociagg.name_pociag ) ;
+                    //System.out.println( temp_pociagg.name_pociag ) ;
                     temp_pociagg.name_pociag = t1;
-                    System.out.println( temp_pociagg.name_pociag ) ;
+                    //System.out.println( temp_pociagg.name_pociag ) ;
                     temp_pociagg.first = new Wagon();
                     temp_pociagg.first.name_wagon = w1;
-                    System.out.println( temp_pociagg.name_pociag ) ;
+                    //System.out.println( temp_pociagg.name_pociag ) ;
                 } else
                 {
                     System.out.println( "Train " + t1 +" already exists" );
@@ -825,39 +824,39 @@ public class Source {
     {
 
 
-        Dworzec_Krakow dworzec_glowny = new Dworzec_Krakow();
-
-
-
-        Pociag temp_pp = new Pociag();
-        Pociag p1 = new Pociag();
-        Pociag p2  = new Pociag() ;
-        Pociag p3  = new Pociag() ;
-
-        Wagon w1 = new Wagon() ;
-        Wagon w2 = new Wagon();
-        Wagon w3 = new Wagon();
-        Wagon temp_ww = new Wagon();
-
-        dworzec_glowny.first_pociag_dworzec = p1;
-        temp_pp = dworzec_glowny.first_pociag_dworzec;
-        temp_pp.name_pociag = "p1";
-        temp_pp.next = p2;
-        temp_pp = temp_pp.next;
-        temp_pp.name_pociag = "p2";
-        temp_pp.next = p3;
-        temp_pp = temp_pp.next;
-        temp_pp.name_pociag = "p3" ;
-
-        System.out.println(dworzec_glowny.first_pociag_dworzec.name_pociag);
-        System.out.println(dworzec_glowny.first_pociag_dworzec );
-        System.out.println( );
-        System.out.println(dworzec_glowny.first_pociag_dworzec.next.name_pociag );
-        System.out.println(dworzec_glowny.first_pociag_dworzec.next );
-        System.out.println( );
-        System.out.println(dworzec_glowny.first_pociag_dworzec.next.next );
-        System.out.println(dworzec_glowny.first_pociag_dworzec.next.next.name_pociag );
-        System.out.println( );
+//        Dworzec_Krakow dworzec_glowny = new Dworzec_Krakow();
+//
+//
+//
+//        Pociag temp_pp = new Pociag();
+//        Pociag p1 = new Pociag();
+//        Pociag p2  = new Pociag() ;
+//        Pociag p3  = new Pociag() ;
+//
+//        Wagon w1 = new Wagon() ;
+//        Wagon w2 = new Wagon();
+//        Wagon w3 = new Wagon();
+//        Wagon temp_ww = new Wagon();
+//
+//        dworzec_glowny.first_pociag_dworzec = p1;
+//        temp_pp = dworzec_glowny.first_pociag_dworzec;
+//        temp_pp.name_pociag = "p1";
+//        temp_pp.next = p2;
+//        temp_pp = temp_pp.next;
+//        temp_pp.name_pociag = "p2";
+//        temp_pp.next = p3;
+//        temp_pp = temp_pp.next;
+//        temp_pp.name_pociag = "p3" ;
+//
+//        System.out.println(dworzec_glowny.first_pociag_dworzec.name_pociag);
+//        System.out.println(dworzec_glowny.first_pociag_dworzec );
+//        System.out.println( );
+//        System.out.println(dworzec_glowny.first_pociag_dworzec.next.name_pociag );
+//        System.out.println(dworzec_glowny.first_pociag_dworzec.next );
+//        System.out.println( );
+//        System.out.println(dworzec_glowny.first_pociag_dworzec.next.next );
+//        System.out.println(dworzec_glowny.first_pociag_dworzec.next.next.name_pociag );
+//        System.out.println( );
 
 
 //        temp_pp = p1;
@@ -946,7 +945,7 @@ public class Source {
 
 
                     dworzec_ruczaj.nowy_pociag_wstaw(temp_string_pociag,temp_string_wagon);
-                    System.out.println("--------");
+
 
 
                 } else if ( temp_string.charAt(0) == 'I' )
@@ -955,13 +954,46 @@ public class Source {
                     if ( temp_string.charAt(6) == 'F'  )
                     {
 
+                        k = 12 ;
+                        temp_string_pociag = "";
+                        temp_string_wagon = "" ;
+
+                        while ( temp_string.charAt(k) != ' ' )
+                        {
+                            temp_string_pociag += temp_string.charAt(k);
+                            k++;
+                        }
+                        k++;
+                        while ( k < temp_string.length())
+                        {
+                            temp_string_wagon += temp_string.charAt(k);
+                            k++;
+                        }
+
+                        dworzec_ruczaj.insert_first(temp_string_pociag,temp_string_wagon);
+
 
                     } else if ( temp_string.charAt(6) == 'L'  )
                     {
 
+                        k = 12 ;
+                        temp_string_pociag = "";
+                        temp_string_wagon = "" ;
 
+                        while ( temp_string.charAt(k) != ' ' )
+                        {
+                            temp_string_pociag += temp_string.charAt(k);
+                            k++;
+                        }
+                        k++;
+                        while ( k < temp_string.length())
+                        {
+                            temp_string_wagon += temp_string.charAt(k);
+                            k++;
+                        }
                     }
 
+                    dworzec_ruczaj.insert_last(temp_string_pociag,temp_string_wagon);
 
 
                 } else if ( temp_string.charAt(0) == 'D' )
@@ -970,13 +1002,65 @@ public class Source {
                     if ( temp_string.charAt(1) == 'i' )
                     {
 
+                        k = 8 ;
+                        temp_string_pociag = "";
+
+                        while ( k < temp_string.length() )
+                        {
+                            temp_string_pociag += temp_string.charAt(k);
+                            k++;
+                        }
+
+                        dworzec_ruczaj.display(temp_string_pociag);
+
 
                     } else if ( temp_string.charAt(3) == 'F' )
                     {
 
+                        k = 9 ;
+                        temp_string_pociag = "";
+                        temp_string_wagon = "" ;
+
+                        while ( temp_string.charAt(k) != ' ' )
+                        {
+                            temp_string_pociag += temp_string.charAt(k);
+                            k++;
+                        }
+                        k++;
+                        while ( k < temp_string.length())
+                        {
+                            temp_string_wagon += temp_string.charAt(k);
+                            k++;
+                        }
+
+                        dworzec_ruczaj.del_first(temp_string_pociag,temp_string_wagon);
+
+
 
                     } else if ( temp_string.charAt(3) == 'L'  )
                     {
+
+
+
+                        k = 9 ;
+                        temp_string_pociag = "";
+                        temp_string_wagon = "" ;
+
+                        while ( temp_string.charAt(k) != ' ' )
+                        {
+                            temp_string_pociag += temp_string.charAt(k);
+                            k++;
+                        }
+
+                        k++;
+                        while ( k < temp_string.length())
+                        {
+                            temp_string_wagon += temp_string.charAt(k);
+                            k++;
+                        }
+
+                        dworzec_ruczaj.del_last(temp_string_pociag,temp_string_wagon);
+
 
                     }
 
@@ -984,19 +1068,48 @@ public class Source {
 
                 } else if ( temp_string.charAt(0) == 'T' )
                 {
-
+                    dworzec_ruczaj.display_trains();
 
                 } else if ( temp_string.charAt(0) == 'R' )
                 {
+
+
+                    k = 8 ;
+                    temp_string_pociag = "";
+
+                    while ( k < temp_string.length() )
+                    {
+                        temp_string_pociag += temp_string.charAt(k);
+                        k++;
+                    }
+
+                    dworzec_ruczaj.reverse(temp_string_pociag);
 
 
                 } else if ( temp_string.charAt(0) == 'U' )
                 {
 
 
+                    k = 6 ;
+                    temp_string_pociag = "";
+                    temp_string_wagon = "" ;
+
+                    while ( temp_string.charAt(k) != ' ' )
+                    {
+                        temp_string_pociag += temp_string.charAt(k);
+                        k++;
+                    }
+                    k++;
+                    while ( k < temp_string.length())
+                    {
+                        temp_string_wagon += temp_string.charAt(k);
+                        k++;
+                    }
+
+                    dworzec_ruczaj.union(temp_string_pociag,temp_string_wagon);
+
+
                 }
-
-
 
 
 
