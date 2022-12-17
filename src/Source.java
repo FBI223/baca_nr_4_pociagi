@@ -570,17 +570,39 @@ public class Source {
 
                             } else if ( temp_pociag == first_pociag_dworzec )
                             {
-                                first_pociag_dworzec = new Pociag();
-                                first_pociag_dworzec.name_pociag = temp_pociag.name_pociag ;
-                                first_pociag_dworzec.first = new Wagon() ;
-                                first_pociag_dworzec.first.name_wagon = temp_pociag.first.name_wagon ;
+
+                                temp_pociag_przed = temp_pociag ;
+                                first_pociag_dworzec = first_pociag_dworzec.next ;
+
+                                while ( temp_pociag.next != null )
+                                {
+                                    temp_pociag = temp_pociag.next ;
+                                }
+
+                                temp_pociag.next = new Pociag() ;
+                                temp_pociag.next.name_pociag = temp_pociag_przed.name_pociag ;
+                                temp_pociag.next.first = new Wagon();
+                                temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon ;
+
+
 
                             } else
                             {
 
-                                temp_pociag_przed.next = new Pociag() ;
+                                temp_pociag_przed = temp_pociag;
+                                temp_pociag_przed.next = temp_pociag.next;
 
 
+                                while ( temp_pociag.next != null )
+                                {
+                                    temp_pociag = temp_pociag.next ;
+
+                                }
+
+                                temp_pociag.next = new Pociag();
+                                temp_pociag.next.name_pociag = temp_pociag_przed.name_pociag;
+                                temp_pociag.next.first = new Wagon();
+                                temp_pociag.next.first.name_wagon = temp_pociag_przed.first.name_wagon;
 
                             }
 
