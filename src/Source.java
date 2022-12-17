@@ -291,7 +291,8 @@ public class Source {
         public void reverse( String t1 )
         {
             Pociag temp_pociag = first_pociag_dworzec;
-            Wagon temp_wagon;
+            Wagon temp_wagon_1;
+            Wagon temp_wagon_2;
             boolean czy_istnieje = false;
 
             if ( temp_pociag == null )
@@ -313,12 +314,29 @@ public class Source {
                     {
                         temp_pociag.first = temp_pociag.first.next ;
 
-                    }else if ( (temp_pociag.first.next != null ) && ( temp_pociag.first.next.next != null ) )
+                    }else if (  temp_pociag.first.next.next != null  )
                     {
 
-                        temp_wagon = temp_pociag.first.prev;
 
+                        temp_wagon_1 = temp_pociag.first.prev;
+                        temp_wagon_1.prev = temp_pociag.first;
+                        temp_wagon_1.next = temp_wagon_1.prev;
 
+                        temp_wagon_1 = temp_wagon_1.next ;
+
+                        temp_pociag.first.prev = temp_pociag.first.next;
+                        temp_pociag.first.next = temp_wagon_1;
+
+                        while ( temp_wagon_1 != temp_pociag.first )
+                        {
+                            temp_wagon_2 = temp_wagon_1.prev ;
+                            temp_wagon_1.prev = temp_wagon_1.next;
+                            temp_wagon_1.next = temp_wagon_2 ;
+
+                            temp_wagon_1 = temp_wagon_1.next ;
+                        }
+
+                        temp_pociag.first = temp_pociag.first.next ;
 
 
                     }
@@ -331,12 +349,105 @@ public class Source {
 
             }
 
+        }
+
+
+
+
+        void union(String t1, String t2 )
+        {
+
+            Pociag temp_pociag_1 = first_pociag_dworzec  ;
+            Pociag temp_pociag_2 = first_pociag_dworzec    ;
+            Wagon temp_wagon;
+
+            boolean czy_znalezione_t1 = false;
+            boolean czy_znalezione_t2 = false ;
+
+            if ( first_pociag_dworzec == null )
+            {
+                System.out.println("Train " + t1 + " does not exist") ;
+                System.out.println("Train " + t2 + " does not exist") ;
+            } else
+            {
+                while ( ((czy_znalezione_t1 == false ) || ( czy_znalezione_t2 == false ) ) && ( (temp_pociag_1 != null) || (temp_pociag_2 != null) ) )
+                {
+
+                    if ( czy_znalezione_t1 == false )
+                    {
+                        if ( temp_pociag_1.name_pociag == t1 )
+                        {
+                            czy_znalezione_t1 = true ;
+                        } else
+                        {
+                            if ( temp_pociag_1.next != null )
+                            {
+                                temp_pociag_1 = temp_pociag_1.next ;
+                            }
+                        }
+
+                    }
+
+                    if ( czy_znalezione_t2 == false )
+                    {
+                        if (temp_pociag_1.name_pociag == t2) {
+                            czy_znalezione_t2 = true;
+                        } else
+                        {
+                            if ( temp_pociag_2.next != null )
+                            {
+                                temp_pociag_2 = temp_pociag_2.next ;
+                            }
+
+                        }
+
+                    }
+                }
+
+                if (  (czy_znalezione_t1 == false ) && ( czy_znalezione_t1 == false ) )
+                {
+                    System.out.println("Train " + t1 + " does not exist") ;
+                    System.out.println("Train " + t2 + " does not exist") ;
+
+                } else if ( (czy_znalezione_t1 == false ) && ( czy_znalezione_t1 == true ) )
+                {
+                    System.out.println("Train " + t1 + " does not exist") ;
+                } else if ( (czy_znalezione_t1 == false ) && ( czy_znalezione_t1 == true ) )
+                {
+                    System.out.println("Train " + t2 + " does not exist") ;
+
+                } else if ( (czy_znalezione_t1 == true ) && ( czy_znalezione_t1 == true ) )
+                {
+
+
+
+                    temp_pociag_1.first.prev.next = temp_pociag_2.first ;
+                    temp_wagon = temp_pociag_2.first.prev ; // ostatni wagon drugiego pociagu
+                    temp_pociag_2.first.prev = temp_pociag_1.first.prev ;
+
+                    temp_pociag_1.first.prev = temp_wagon ;
+                    temp_wagon.next = temp_pociag_1.first ;
+
+
+
+
+
+                }
+
+
+
+
+            }
 
 
 
 
 
         }
+
+
+
+
 
 
 
