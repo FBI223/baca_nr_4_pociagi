@@ -1,7 +1,8 @@
 
 import java.util.Scanner;
 
-
+    // nowy pociag trafia na poczatek listy czyli na first
+    // gdy usuwsz to musisz obieg wagonu zrobic
 
 public class Source {
 
@@ -33,8 +34,8 @@ public class Source {
             boolean czy_takie_same = true ;
             int i = 0 ;
 
-//            System.out.println(s1.length());
-//            System.out.println(s2.length());
+            //System.out.println(s1.length());
+            //System.out.println(s2.length());
 
             if ( s1.length() != s2.length() )
             {
@@ -55,6 +56,63 @@ public class Source {
 
 
             return czy_takie_same ;
+        }
+
+
+        public void nowy_pociag_wstaw_2( String t1, String w1 )
+        {
+
+            Pociag temp_pociag;
+            boolean czy_znalezione = false ;
+
+
+            if ( first_pociag_dworzec == null )
+            {
+                first_pociag_dworzec = new Pociag();
+                first_pociag_dworzec.first = new Wagon();
+                first_pociag_dworzec.name_pociag = t1;
+                first_pociag_dworzec.first.name_wagon = w1;
+
+                first_pociag_dworzec.first.prev = first_pociag_dworzec.first ;
+                first_pociag_dworzec.first.next = first_pociag_dworzec.first ;
+
+            } else
+            {
+                temp_pociag = first_pociag_dworzec;
+
+                while ( (czy_znalezione == false) && ( temp_pociag != null ) )
+                {
+
+                    if ( temp_pociag.name_pociag.equals(t1) == true )
+                    {
+                        czy_znalezione = true ;
+                    }
+                    temp_pociag = temp_pociag.next ;
+
+                }
+
+                if ( czy_znalezione == true )
+                {
+                    System.out.println( "Train " + t1 +" already exists" ) ;
+                } else
+                {
+
+
+                    temp_pociag = first_pociag_dworzec;
+                    first_pociag_dworzec = new Pociag();
+                    first_pociag_dworzec.first = new Wagon();
+                    first_pociag_dworzec.name_pociag = t1 ;
+                    first_pociag_dworzec.first.name_wagon = w1 ;
+
+                    first_pociag_dworzec.next = temp_pociag;
+
+
+                }
+
+
+            }
+
+
         }
 
 
@@ -126,7 +184,7 @@ public class Source {
                     //System.out.println( temp_pociagg.name_pociag ) ;
                 } else
                 {
-                    System.out.println( "Train " + t1 +" already exists" );
+                    System.out.println( "Train " + t1 +" already exists" ) ;
                 }
 
 
@@ -193,10 +251,18 @@ public class Source {
 
             Wagon temp_ostatni_wagon ;
             Pociag temp_pociag = first_pociag_dworzec ;
-            while ( temp_pociag.name_pociag.equals(t1) == false )
+
+            System.out.println( first_pociag_dworzec.name_pociag );
+            while ( czy_takie_same_stringi(first_pociag_dworzec.name_pociag, t1)== false )
             {
+
+                //System.out.println("flaga 1  ");
+                //System.out.println( first_pociag_dworzec.name_pociag );
+                //System.out.println( t1 );
+                //System.out.println( czy_takie_same_stringi(first_pociag_dworzec.name_pociag, t1) );
                 if ( temp_pociag.next != null )
                 {
+                    //System.out.println("flaga 2  ");
                     temp_pociag = temp_pociag.next;
                 }
             }
@@ -207,9 +273,11 @@ public class Source {
             } else
             {
 
+                System.out.println("flaga 3  ");
 
                 if (temp_pociag.first.next == null)
                 {
+                    System.out.println("flaga 5  ");
                     temp_pociag.first.next = new Wagon();
                     temp_pociag.first.next.prev = temp_pociag.first ;
                     temp_pociag.first.next.name_wagon = w1 ;
@@ -218,6 +286,8 @@ public class Source {
 
                 } else
                 {
+
+                    System.out.println("flaga 6  ");
 
                     temp_ostatni_wagon = temp_pociag.first.prev ;
 
@@ -248,29 +318,40 @@ public class Source {
             {
                 while ( ((temp_pociag.name_pociag.equals(t1) == false  ) && ( temp_pociag.next != null ) ) )
                 {
+                    //System.out.println(" flaga 1  " ) ;
                     temp_pociag = temp_pociag.next;
                 }
 
                 if ( temp_pociag.name_pociag.equals(t1) == true )
                 {
 
+                    //System.out.println(" flaga 2  " ) ;
                     temp_wagon = temp_pociag.first;
 
 
-                    while ( temp_wagon.next != null )
+                    while ( temp_wagon.next != temp_pociag.first )
                     {
-                        wyjscie += temp_wagon ;
+
+
+                        //System.out.println( temp_pociag.first.name_wagon );
+                        //System.out.println( temp_pociag.first.next.name_wagon );
+
+                        //System.out.println(" flaga 3  " ) ;
+                        wyjscie += temp_wagon.name_wagon ;
                         wyjscie += " " ;
                         temp_wagon = temp_wagon.next ;
                     }
 
-                    wyjscie += temp_wagon ;
+
+                    wyjscie += temp_wagon.name_wagon ;
 
 
                 } else
                 {
                     System.out.println("Train " + t1 + " does not exist") ;
                 }
+
+                System.out.println(wyjscie);
 
 
             }
@@ -622,8 +703,8 @@ public class Source {
 
                             if ( temp_pociag_przed.first.prev.prev == temp_pociag_przed.first )
                             {
-                                temp_pociag_przed.first.prev = null;
-                                temp_pociag_przed.first.next = null ;
+                                temp_pociag_przed.first.prev = temp_pociag_przed.first ;
+                                temp_pociag_przed.first.next = temp_pociag_przed.first ;
                             } else
                             {
                                 temp_pociag_przed.first.prev.next = temp_pociag_przed.first.next ;
@@ -787,8 +868,8 @@ public class Source {
 
                             if ( temp_pociag_przed.first.prev.prev == temp_pociag_przed.first )
                             {
-                                temp_pociag_przed.first.next = null ;
-                                temp_pociag_przed.first.prev = null ;
+                                temp_pociag_przed.first.next = temp_pociag_przed.first ;
+                                temp_pociag_przed.first.prev = temp_pociag_przed.first ;
                             } else
                             {
                                 temp_pociag_przed.first.prev.prev.next = temp_pociag_przed.first ;
@@ -944,7 +1025,7 @@ public class Source {
 
 
 
-                    dworzec_ruczaj.nowy_pociag_wstaw(temp_string_pociag,temp_string_wagon);
+                    dworzec_ruczaj.nowy_pociag_wstaw_2(temp_string_pociag,temp_string_wagon);
 
 
 
@@ -976,7 +1057,7 @@ public class Source {
                     } else if ( temp_string.charAt(6) == 'L'  )
                     {
 
-                        k = 12 ;
+                        k = 11 ;
                         temp_string_pociag = "";
                         temp_string_wagon = "" ;
 
@@ -992,6 +1073,10 @@ public class Source {
                             k++;
                         }
                     }
+
+                    System.out.println("pocaig : " + temp_string_pociag);
+                    System.out.println("wagon : " + temp_string_wagon);
+
 
                     dworzec_ruczaj.insert_last(temp_string_pociag,temp_string_wagon);
 
@@ -1017,7 +1102,7 @@ public class Source {
                     } else if ( temp_string.charAt(3) == 'F' )
                     {
 
-                        k = 9 ;
+                        k = 12 ;
                         temp_string_pociag = "";
                         temp_string_wagon = "" ;
 
@@ -1032,6 +1117,9 @@ public class Source {
                             temp_string_wagon += temp_string.charAt(k);
                             k++;
                         }
+                        System.out.println( "pociag : " + temp_string_pociag );
+                        System.out.println( "wagon  : " + temp_string_wagon );
+
 
                         dworzec_ruczaj.del_first(temp_string_pociag,temp_string_wagon);
 
@@ -1042,7 +1130,7 @@ public class Source {
 
 
 
-                        k = 9 ;
+                        k = 8 ;
                         temp_string_pociag = "";
                         temp_string_wagon = "" ;
 
