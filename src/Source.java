@@ -257,7 +257,7 @@ public class Source {
             Pociag temp_pociag = first_pociag_dworzec ;
 
             System.out.println( first_pociag_dworzec.name_pociag );
-            while ( czy_takie_same_stringi(first_pociag_dworzec.name_pociag, t1)== false )
+            while ( temp_pociag.name_pociag.equals(t1) == false )
             {
 
                 //System.out.println("flaga 1  ");
@@ -333,7 +333,7 @@ public class Source {
                     temp_wagon = temp_pociag.first;
 
 
-                    while ( temp_wagon.next != temp_pociag.first )
+                    while  ( temp_wagon.next != temp_pociag.first   )
                     {
 
 
@@ -610,8 +610,9 @@ public class Source {
                         {
 
 
-                            if ( first_pociag_dworzec.first.next == null )  // jeden wagon
+                            if ( first_pociag_dworzec.first.next ==  first_pociag_dworzec.first )  // jeden wagon
                             {
+                                temp_pociag = first_pociag_dworzec;
 
                                 first_pociag_dworzec = new Pociag() ;
                                 first_pociag_dworzec.name_pociag = t2;
@@ -630,6 +631,8 @@ public class Source {
                                 first_pociag_dworzec.first.name_wagon = temp_pociag_przed.first.name_wagon ;
                                 first_pociag_dworzec.next = temp_pociag_przed ;
 
+                                first_pociag_dworzec.first.next = first_pociag_dworzec.first;
+                                first_pociag_dworzec.first.prev = first_pociag_dworzec.first;
 
 
                                 temp_pociag = temp_pociag_przed ;
@@ -659,12 +662,14 @@ public class Source {
                     } else
                     {
 
-                        if ( temp_pociag.first.next == null  )
+                        if ( temp_pociag.first.next == temp_pociag.first  )
                         {
 
+                            System.out.println("skrt 1 ");
 
                             if ( temp_pociag.next == null )
                             {
+                                System.out.println("skrt 2 ");
                                 temp_pociag_przed.next = null ;
 
                                 temp_pociag_przed = first_pociag_dworzec;
@@ -681,6 +686,8 @@ public class Source {
                             } else if ( temp_pociag == first_pociag_dworzec )
                             {
 
+                                System.out.println("skrt 3 ");
+
                                 temp_pociag_przed = first_pociag_dworzec;
 
                                 first_pociag_dworzec = new Pociag();
@@ -695,6 +702,8 @@ public class Source {
 
                             } else
                             {
+
+                                System.out.println("skrt 4 ");
 
 
                                 temp_pociag = first_pociag_dworzec;
@@ -716,6 +725,7 @@ public class Source {
                         } else
                         {
 
+                            System.out.println("skrt 5 ");
 
                             temp_pociag_przed = first_pociag_dworzec ;
 
@@ -793,7 +803,7 @@ public class Source {
                         {
 
 
-                            if ( first_pociag_dworzec.first.next == null )  // jeden wagon
+                            if ( first_pociag_dworzec.first.next ==  first_pociag_dworzec.first )  // jeden wagon
                             {
 
                                 first_pociag_dworzec = new Pociag() ;
@@ -810,6 +820,9 @@ public class Source {
                                 first_pociag_dworzec.name_pociag = t2;
                                 first_pociag_dworzec.first.name_wagon = temp_pociag_przed.first.prev.name_wagon;
                                 first_pociag_dworzec.next = temp_pociag_przed;
+
+                                first_pociag_dworzec.first.next = first_pociag_dworzec.first;
+                                first_pociag_dworzec.first.prev = temp_pociag_przed.first;
 
 
                                 temp_pociag = temp_pociag_przed ;
@@ -837,7 +850,7 @@ public class Source {
                     } else
                     {
 
-                        if ( temp_pociag.first.next == null  )
+                        if ( temp_pociag.first.next == temp_pociag.first  )
                         {
 
 
@@ -1304,7 +1317,7 @@ public class Source {
                     } else if ( temp_string.charAt(3) == 'F' )
                     {
 
-                        k = 12 ;
+                        k = 9 ;
                         temp_string_pociag = "";
                         temp_string_wagon = "" ;
 
